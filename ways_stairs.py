@@ -11,5 +11,19 @@ def ways_stairs(no_stairs: int, steps: List[int])-> int:
     """
     stairs_table: List[int] = [0 for _ in range(no_stairs + 1)]
     stairs_table[0] = 1
+    for index in range(no_stairs):
+        if stairs_table[index]:
+            for step in steps:
+                if index + step < len(stairs_table):
+                    stairs_table[index + step] += stairs_table[index]
 
     return stairs_table[no_stairs]
+
+def main()-> None:
+    stairs: int = 5
+    steps: List[int] = [ 2, 1]
+    num_ways: int = ways_stairs(steps=steps,no_stairs= stairs)
+
+    print(f"There are {num_ways} ways up {stairs} stairs given allowed steps at a time are either of {steps}")
+if __name__ =="__main__":
+    main()
